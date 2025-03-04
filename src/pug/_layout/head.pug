@@ -1,0 +1,28 @@
+-
+  const meta = {
+    title : 'studio CLIP meets HELLO KITTY | and st',
+    description: 'studio CLIPだけの特別コラボ。70〜80’sに夢中になったサンリオキャラクターズの表情をよみがえらせて、新しいのに懐かしいファンシーグッズを作りました。',
+    type: 'website',
+    ogPath: `https://www.dot-st.com${IMG_DIR}og.png?${now.getTime()}`
+  }
+
+meta(charset="utf-8")
+
+meta(http-equiv="X-UA-Compatible" content="IE=edge,chrome=1")
+meta(name="viewport" content="width=device-width, initial-scale=1.0")
+
+title!=meta.title
+meta(name='description' content=meta.description)
+link(rel="canonical" href!=CANONICAL_ROOT)
+
+meta(property = "og:title" content!=meta.title)
+meta(property = "og:site_name" content!=meta.title)
+meta(property = "og:description" content!=meta.description)
+meta(property = "og:url" content!=CANONICAL_ROOT)
+meta(property = "og:type" content!=meta.type)
+meta(property = "og:image" content!=meta.ogPath)
+
+meta(name = "twitter:card" content!='summary_large_image')
+meta(name = "twitter:title" content!=meta.title)
+meta(name = "twitter:description" content!=meta.description)
+meta(name = "twitter:image" content!=meta.ogPath)

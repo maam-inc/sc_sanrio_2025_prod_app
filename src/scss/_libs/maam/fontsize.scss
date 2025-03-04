@@ -1,0 +1,78 @@
+/*
+
+【フォントサイズclamp用function】
+PC向けです。
+
+<fz-lq>
+デザインの値を入れて、最小viewport〜最大viewportでフォントサイズをclampする関数。
+デザインのキャンバスサイズ時点で、フォントサイズが関数に設定した数値になるようになっています。
+例：font-size: fz-lq(28); → デザインカンプが1280pxだとすると、ウィンドウが1280pxの時点で28pxが指定される。
+初期値では、ブレイクポイントから$contW-pc（_project.scssに記載しているコンテンツ幅）の間でフォントサイズがリキッドになるようにしています。
+
+<fz-clamp>
+画面幅の最大最小と、フォントサイズの最小最大を設定することでフォントサイズをclampできるもの。
+以下のジェネレーターと同様の機能です。
+https://min-max-calculator.9elements.com/
+
+*/
+
+@use "sass:math";
+@use '../../_base/_project' as *;
+
+//①デザインの数値をベースに、一定の画面幅までフォントサイズをリキッド表示
+@function fz-lq($size, $min-vp: $bp+1, $max-vp: $contW-pc, $base-vp: $w-pc) {
+  @if $max-vp < $min-vp{
+    @error "$min-vpには$max-vpより小さい値を設定してください。";
+  }
+  
+  $min: null;
+  $max: null;
+
+  // フォントサイズの最大最小を計算
+  @if $max-vp > $base-vp {
+    $min: $size * math.div($min-vp, $base-vp);
+    $max: $size * math.div($max-vp, $base-vp);
+  }
+  @else {
+    $min: $size * math.div($min-vp, $max-vp);
+    $max: $size;
+  }
+
+  // 中間値の計算
+  $variable-rate: math.div(($max - $min),($max-vp - $min-vp));
+  $base-offset: $min - $min-vp * $variable-rate;
+
+  // 単位へ変換
+  $min-px: math.div(math.round($min*100),100) * 1px;
+  $max-px: math.div(math.round($max*100),100) * 1px;
+
+  $variable-px: $base-offset * 1px;
+  $variable-vw: $variable-rate * 100vw;
+
+  @if $variable-px == 0px {
+    @return clamp($min-px, $variable-vw, $max-px);
+  }
+  @else {
+    @return clamp($min-px, $variable-px + $variable-vw, $max-px);
+  }
+
+  
+  // clamp の構築
+  // @return clamp($min-px, $variable, $max-px);
+}
+
+
+//②画面とフォントサイズの最大最小を指定してフォントサイズをclamp
+@function fz-clamp($min, $max, $min-vp: $bp+1, $max-vp: $contW-pc) {
+  // 中間値の計算
+  $variable-rate: math.div(($max - $min),($max-vp - $min-vp));
+  $base-offset: $min - $min-vp * $variable-rate;
+
+  // px,vwへ変換
+  $min-px: math.div(math.round($min*100),100) * 1px;
+  $max-px: math.div(math.round($max*100),100) * 1px;
+  $variable-px: $base-offset * 1px;
+  $variable-vw: $variable-rate * 100vw;
+  
+  @return clamp($min-px, $variable-px + $variable-vw, $max-px);
+}

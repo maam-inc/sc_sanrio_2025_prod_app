@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 22 22">
+<defs>
+ <style>
+.cls-1 { fill: none; }
+.cls-2 { fill: #ff2e79; }
+.cls-3 { clip-path: url(#sid2); }
+</style>
+  <clipPath id="sid2">
+   <rect class="cls-1" width="22" height="22"/>
+  </clipPath>
+ </defs>
+ <g class="cls-3">
+  <path class="cls-2" d="M11.9,1.38l2.37,5.26c.14.32.44.53.79.57l5.73.63c.84.09,1.18,1.13.55,1.7l-4.27,3.88c-.26.23-.37.59-.3.93l1.17,5.65c.17.83-.71,1.47-1.45,1.05l-5.01-2.86c-.3-.17-.67-.17-.97,0l-5.01,2.86c-.74.42-1.62-.22-1.45-1.05l1.17-5.65c.07-.34-.04-.69-.3-.93L.65,9.55c-.63-.57-.29-1.61.55-1.7l5.73-.63c.35-.04.64-.26.79-.57l2.37-5.26c.35-.77,1.44-.77,1.79,0Z"/>
+ </g>
+</svg>

@@ -1,0 +1,168 @@
+@use '../_base/settings' as *;
+
+.contents .look {
+  // ----------------------------------------
+  // mixin lookだけ
+  // ----------------------------------------
+
+  $max-width: 974;
+
+  @mixin margin($device,$mw:750,$margin-top,$margin-right,$margin-left) {
+    @if $device == sp {
+      @if ($margin-left == auto and $margin-right == auto) {
+        margin: per($margin-top,$mw) auto 0;
+      } @else if ($margin-right == auto and $margin-left!=auto) {
+        margin: per($margin-top,$mw) auto 0 per($margin-left,$mw);
+      } @else if ($margin-left == auto and $margin-right!=auto) {
+        margin: per($margin-top,$mw) per($margin-right,$mw) 0 auto;
+      } @else {
+        margin: per($margin-top,$mw) per($margin-right,$mw) 0 per($margin-left,$mw);
+      }
+    }
+    @else if $device == pc {
+      @if ($margin-left == auto and $margin-right == auto) {
+        margin: #{$margin-top}px auto 0;
+      } @else if ($margin-right == auto and $margin-left!=auto) {
+        margin: #{$margin-top}px auto 0 per($margin-left,$mw);
+      } @else if ($margin-left == auto and $margin-right!=auto) {
+        margin: #{$margin-top}px per($margin-right,$mw) 0 auto;
+      } @else {
+        margin: #{$margin-top}px per($margin-right,$mw) 0 per($margin-left,$mw);
+      }
+    }
+  }
+  @mixin ttl($i, $w, $mt:0) {
+    width: per($w);
+    margin: per($mt) auto 0;
+    svg { fill: map-get($sec-color,sec#{$i}) }
+  }
+
+  $sec-color: ( sec1: $main, sec2: #1cbec6, sec3: #f90d0d );
+
+  // ----------------------------------------
+  // ここから
+  // ----------------------------------------
+
+  container-type: inline-size;
+  width: 100%;
+  overflow: clip;
+
+  .sec {
+    width: min(100%,#{$max-width}px);
+    margin-inline: auto;
+    background: $wh;
+    padding-bottom: per(320);
+    overflow: hidden;
+
+    // 共通
+    .sec_img1 {
+      width: 100%;
+      margin-top: vw(115)
+    }
+    .online-btn {
+      margin-top: per(168);
+    }
+
+    // 個別
+    &1 {
+      .sec-ttl {
+        @include ttl(1,319);
+      }
+      .sec_img1 {
+        height: vw(1620);
+      }
+      .sec_img2 {
+        width: vw(584);
+        height: vw(406);
+        margin: vw(166) auto 0;
+      }
+      .sec_img3 {
+        width: vw(404);
+        height: vw(583);
+        margin: vw(177) auto 0;
+      }
+      .online-btn {
+        .btn {
+          background: $main;
+        }
+      }
+      .chara1 {
+        width: vw(233);
+        height: auto;
+        aspect-ratio: 233/151;
+        margin: vw(148) vw(68) 0 auto;
+      }
+    }
+    &2 {
+      .sec-ttl {
+        @include ttl(2,471);
+      }
+      .sec_img1 {
+        height: vw(1680);
+      }
+      .sec_img2 {
+        width: vw(382);
+        height: vw(546);
+        margin: vw(175) auto 0;
+      }
+      .chara1 {
+        width: vw(198);
+        height: auto;
+        aspect-ratio: 198/192;
+        margin: vw(121) auto 0 vw(62);
+        position: relative;
+        z-index: 1;
+      }
+      .sec_img3 {
+        width: vw(750);
+        height: vw(490);
+        margin: vw(-92) auto 0;
+        position: relative;
+        z-index: 5;
+      }
+      .online-btn {
+        .btn {
+          background: $blue;
+        }
+      }
+    }
+    &3 {
+      .sec-ttl {
+        @include ttl(3,366);
+      }
+      .sec_img1 {
+        height: vw(1700);
+      }
+      .sec_img2_wrapper {
+        width: 100%;
+        height: vw(656);
+        margin-top: vw(160);
+        position: relative;
+
+        .sec_img2 {
+          width: vw(470);
+          height: 100%;
+          margin: 0 auto;
+        }
+        .chara1 {
+          width: vw(137);
+          height: auto;
+          aspect-ratio: 137/217;
+          position: absolute;
+          bottom: vw(-90);
+          left: vw(-73);
+        }
+      }
+      .sec_img3 {
+        width: vw(570);
+        height: vw(396);
+        margin: vw(195) auto 0;
+      }
+      .online-btn {
+        .btn {
+          background: #f90d0d;
+        }
+      }
+    }
+  }
+}

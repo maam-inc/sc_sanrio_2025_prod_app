@@ -1,0 +1,128 @@
+
+// SP,PC分岐点
+$responsiveMinWidth: 768px
+
+
+// px指定からパーセントに変換(psdなどのpx幅を%に変換 スマホサイトなど)
+@mixin perW($num, $baseWid: 750px)
+  // max-width: $num*1400/1600
+  width: calc($num / $baseWid) * 100%
+@mixin perWMax($num, $baseWid: 750px)
+  max-width: $num
+  width: calc($num / $baseWid) * 100%
+@mixin perVW($num, $baseWid: 750px)
+  // max-width: $num*1400/1600
+  width: calc($num / $baseWid) * 100vw
+@mixin perVWMax($num, $baseWid: 750px)
+  // max-width: $num*1400/1600
+  max-width: $num
+  width: calc($num / $baseWid) * 100vw
+
+@mixin perH($num, $baseWid: 750px)
+  height: calc($num / $baseWid) * 100%
+@mixin perVH($num, $baseWid: 750px)
+  height: calc($num / $baseWid) * 100vw
+
+@mixin perMT($num, $baseWid: 750px)
+  margin-top: calc($num / $baseWid) * 100%
+@mixin perMB($num, $baseWid: 750px)
+  margin-bottom: calc($num / $baseWid) * 100%
+@mixin perML($num, $baseWid: 750px)
+  margin-left: calc($num / $baseWid) * 100%
+@mixin perMR($num, $baseWid: 750px)
+  margin-right: calc($num / $baseWid) * 100%
+
+@mixin perMTV($num, $baseWid: 750px)
+  margin-top: calc($num / $baseWid) * 100vw
+@mixin perMBV($num, $baseWid: 750px)
+  margin-bottom: calc($num / $baseWid) * 100vw
+@mixin perMLV($num, $baseWid: 750px)
+  margin-left: calc($num / $baseWid) * 100vw
+@mixin perMRV($num, $baseWid: 750px)
+  margin-right: calc($num / $baseWid) * 100vw
+
+@mixin perPT($num, $baseWid: 750px)
+  padding-top: calc($num / $baseWid) * 100%
+@mixin perPB($num, $baseWid: 750px)
+  padding-bottom: calc($num / $baseWid) * 100%
+@mixin perPL($num, $baseWid: 750px)
+  padding-left: calc($num / $baseWid) * 100%
+@mixin perPR($num, $baseWid: 750px)
+  padding-right: calc($num / $baseWid) * 100%
+
+@mixin perPTV($num, $baseWid: 750px)
+  padding-top: calc($num / $baseWid) * 100vw
+@mixin perPBV($num, $baseWid: 750px)
+  padding-bottom: calc($num / $baseWid) * 100vw
+@mixin perPLV($num, $baseWid: 750px)
+  padding-left: calc($num / $baseWid) * 100vw
+@mixin perPRV($num, $baseWid: 750px)
+  padding-right: calc($num / $baseWid) * 100vw
+
+//top,bottomは値が変わるからperPT,perPBで代用
+// @mixin perTop($num, $baseWid: 750px)
+//   top: calc($num / $baseWid)
+// @mixin perBottom($num, $baseWid: 750px)
+//   bottom: calc($num / $baseWid)
+@mixin perL($num, $baseWid: 750px)
+  left: calc($num / $baseWid) * 100%
+@mixin perR($num, $baseWid: 750px)
+  right: calc($num / $baseWid) * 100%
+
+@mixin perTV($num, $baseWid: 750px)
+  top: calc($num / $baseWid) * 100vw
+@mixin perBV($num, $baseWid: 750px)
+  bottom: calc($num / $baseWid) * 100vw
+@mixin perLV($num, $baseWid: 750px)
+  left: calc($num / $baseWid) * 100vw
+@mixin perRV($num, $baseWid: 750px)
+  right: calc($num / $baseWid) * 100vw
+//
+
+@mixin perPTAbs($wid, $hei)
+  padding-top: calc($hei / $wid) * 100%
+
+
+// +calc( width, '100% - 2px')
+@mixin calc($property, $expression)
+  #{$property}: -moz-calc(#{$expression})
+  #{$property}: -webkit-calc(#{$expression})
+  #{$property}: calc(#{$expression})
+
+
+//1. imgタグ
+@mixin ulListImgPer($length, $baseUrl, $type:".png")
+  @for $i from 1 through $length
+    // @debug ($i)
+    // @debug (image-width($baseUrl+$i+$type))
+    li:nth-child(#{$i})
+      img
+        +perW(image-width($baseUrl+$i+$type))
+        height: auto
+
+//2. liタグ
+@mixin ulListLiPer($length, $baseUrl, $type:".png")
+  @for $i from 1 through $length
+    // @debug ($i)
+    // @debug (image-width($baseUrl+$i+$type))
+    li:nth-child(#{$i})
+      +perW(image-width($baseUrl+$i+$type))
+      height: auto
+
+@mixin ulListTargetImgPer($clslist, $baseUrl, $type:".png")
+  @each $target in $clslist
+    $i: index($clslist, $target)
+    .#{$target}
+      img
+        +perW(image-width("common/nav"+$i+".png"))
+        height: auto
+
+@mixin allImgPer($clsList, $imgList, $sclPer:1)
+  @each $target in $clsList
+    $i: index($clsList, $target)
+    $imgPath: nth($imgList,$i)
+    // @debug ($imgPath)
+    // @debug (image-width($imgPath))
+    .#{$target}
+      +perW(image-width($imgPath)*$sclPer)
+      height: auto

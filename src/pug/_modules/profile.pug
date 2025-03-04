@@ -1,0 +1,23 @@
+mixin profile(i)
+  .chara(class=`chara_${i+1}`)
+    .chara_img: +webPPng(`${IMG_DIR}profile/`,`profile_img_${i+1}`,`profile_img_${i+1}`,devMode)
+    .chara_profile
+      -if( i == 6 )
+        picture
+          source(srcset=`${IMG_DIR}profile/profile_${i+1}.svg` media="(min-width: 769px)")
+          img(src=`${IMG_DIR}profile/profile_${i+1}-sp.svg`)
+      -else
+        img(src=`${IMG_DIR}profile/profile_${i+1}.svg`)
+    p.chara_text.notoCjkM!=profile.chara[i]
+
+mixin profile_flex(i)
+  .flex_wrapper(class=`flex_wrapper_${i+1}`)
+    +profile(i)
+    +profile(i+1)
+
+.profile#profile
+  .profile_container
+    .circle.circle1
+    .circle.circle2
+    .img: img(src=`${IMG_DIR}profile/profile.png` loading="lazy")
+    .copy.poppinsR: +sanrio_copy

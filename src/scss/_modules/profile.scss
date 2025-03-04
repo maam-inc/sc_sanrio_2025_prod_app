@@ -1,0 +1,50 @@
+@use '../_base/settings' as *;
+
+.contents {
+  .profile {
+    background-color: #efdc54;
+    padding: vw(35) 0 vw(68);
+    position: relative;
+    margin-top: vw(313);
+
+    &_container {
+      width: vw(695);
+      margin: 0 auto;
+      border-top: 1px solid $main;
+      position: relative;
+
+      .circle {
+        content: '';
+        width: 5px;
+        height: 5px;
+        background-color: $main;
+        border-radius: 50%;
+        position: absolute;
+        top: -3px;
+      }
+      .circle1 {
+        left: -2.5px;
+      }
+      .circle2 {
+        right: -2.5px;
+      }
+      .img {
+        width: vw(678);
+        height: auto;
+        margin: vw(-140) auto 0;
+      }
+      .copy {
+        width: vw(468);
+        height: auto;
+        aspect-ratio: 468/17.4;
+        margin: vw(328) auto 0;
+
+        svg {
+          .cls-1 {
+            fill: $main;
+          }
+        }
+      }
+    }
+  }
+}

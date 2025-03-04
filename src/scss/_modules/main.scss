@@ -1,0 +1,137 @@
+@use '../_base/settings' as *;
+
+.main {
+  padding-top: vw(18);
+  position: relative;
+
+  .absolute {
+    height: auto;
+    position: absolute;
+    z-index: 5;
+  }
+  .fv {
+    width: vw(750);
+    margin: 0 auto;
+    position: relative;
+
+    .container {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 750/1164;
+      position: relative;
+
+      .img {
+        &:not(:first-child){
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+        &1 {
+          position: relative;
+          z-index: 3;
+        }
+        &2 {
+          z-index: 2;
+        }
+        &3 {
+          z-index: 1;
+        }
+      }
+    }
+    .collabo_en {
+      width: vw(296);
+      top: vw(32);
+      left: 50%;
+      transform: translateX(-50%);
+
+      svg {
+        .cls-1 {
+          fill: #fff;
+        }
+      }
+    }
+    .collabo_jp {
+      width: vw(280);
+      bottom: vw(31);
+      left: vw(48);
+
+      svg {
+        .cls-1 {
+          fill: #fff;
+        }
+      }
+    }
+    .clip_logo {
+      width: vw(94);
+      bottom: vw(30);
+      right: vw(34);
+
+      svg {
+        .cls-1 {
+          fill: #fff;
+        }
+      }
+    }
+  }
+  .lead_wrapper {
+    width: 100%;
+    padding-top: vw(220);
+    position: relative;
+
+    .back_to_en {
+      width: vw(740);
+      top: vw(143);
+      left: 0;
+
+      svg {
+        .cls-1 {
+          fill: #eaeaea;
+        }
+      }
+    }
+    .lead {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 750/808;
+      position: relative;
+      z-index: 10;
+    }
+  }
+}
+
+// animation
+@keyframes fv_slide {
+  0% {
+    opacity: 0;
+  }
+  33.3333333333% {
+    opacity: 0;
+  }
+  43.3333333333% {
+    opacity: 1;
+  }
+  66.6666666666% {
+    opacity: 1;
+  }
+  76.6666666666% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.main {
+  .fv {
+    .container {
+      .img {
+        &1 {
+          animation: fv_slide 15s $ease-out-cubic infinite;
+          animation-delay: -5s;
+        }
+        &2 {
+          animation: fv_slide 15s $ease-out-cubic infinite;
+        }
+      }
+    }
+  }
+}

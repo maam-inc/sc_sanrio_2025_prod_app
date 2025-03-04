@@ -1,0 +1,12 @@
+
+mixin button
+  .common_button
+    .cross_container
+      .cross.cross_1: .line
+      .cross.cross_2: .line
+
+mixin online-btn
+  .online-btn
+    a.btn.poppinsM(href=contents.online_link.url, target='_blank', rel='noopener')
+      span.online_shop: +online_shop
+      span.btn-arw: +arrow

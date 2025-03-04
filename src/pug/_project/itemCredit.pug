@@ -1,0 +1,9 @@
+//- クレジット ベース
+//- 適宜書き換えて使用してください。
+mixin itemCredit(i,name,price,url,comingsoon,className="")
+  a.credit(class = className ? className : "" href=url target="_blank" class = comingsoon ? 'is-disabled' : "")
+    span.credit-name !{name}
+    span.credit-price !{"&yen;" + price.toLocaleString()}
+    span.credit-buy BUY
+    if comingsoon
+      span.credit-comingsoon coming soon

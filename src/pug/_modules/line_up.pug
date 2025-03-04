@@ -1,0 +1,63 @@
+include ../_data/data_lineup
+
+mixin item_credit(i)
+  -if( line_up[i] )
+    -for( let c = 0; c < line_up[i].credit.length; c++ )
+      -let detail = line_up[i].credit[c];
+      a.item-detail(href=detail.url, target='_blank', rel='noopener')
+        -if( detail.chara )
+          span.name.notoCjkM!=`${detail.name}`
+        -else
+          span.name.notoCjkM!=` ${detail.name}`
+        span.price.notoCjkM!=`${detail.each ? '各' : '' }&yen;${detail.price.toLocaleString()} (inc. tax)`
+        span.buy.poppinsM BUY
+      -if( detail.note )
+        p.item-note.notoCjkM!=detail.note
+
+mixin item(i)
+  .item_credit_wrapper
+    .item_credit: +item_credit(i)
+    .item_credit: +item_credit(i+1)
+
+section.line_up#line_up
+  h2.line_up-ttl
+    span.back_to: +back_to
+    span.sub: +subttl
+    span.line_up_title: +line_up_title
+
+  .line_up-main
+    img(src=`${IMG_DIR}line_up/line_up_main.jpg` loading="lazy")
+
+  ul.line_up-list
+      li.item
+        .img: img(src=`${IMG_DIR}line_up/line_up_1.jpg` loading="lazy")
+        +item(0)
+      li.item
+        .img: img(src=`${IMG_DIR}line_up/line_up_2.jpg` loading="lazy")
+        +item(2)
+      li.item
+        .img: img(src=`${IMG_DIR}line_up/line_up_3.jpg` loading="lazy")
+        +item(4)
+      li.item
+        .img: img(src=`${IMG_DIR}line_up/line_up_4.jpg` loading="lazy")
+        +item(6)
+      li.item
+        .img: img(src=`${IMG_DIR}line_up/line_up_5.jpg` loading="lazy")
+        +item(8)
+      li.item
+        .img: img(src=`${IMG_DIR}line_up/line_up_6.jpg` loading="lazy")
+        +item(10)
+      li.item
+        .img: img(src=`${IMG_DIR}line_up/line_up_7.jpg` loading="lazy")
+        +item(12)
+      li.item
+        .img: img(src=`${IMG_DIR}line_up/line_up_8.jpg` loading="lazy")
+        +item(14)
+      li.item
+        .img: img(src=`${IMG_DIR}line_up/line_up_9.jpg` loading="lazy")
+        +item(16)
+      li.item
+        .img: img(src=`${IMG_DIR}line_up/line_up_10.jpg` loading="lazy")
+        +item(18)
+
+  +online-btn

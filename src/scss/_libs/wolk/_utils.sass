@@ -1,0 +1,230 @@
+@use "sass:math"
+
+//backgroundImage
+@mixin bg($name, $dpi: 1)
+  $width: image-width($name) / $dpi
+  $height: image-height($name) / $dpi
+  // display: block
+  width: $width
+  height: $height
+  background: image-url($name, false, false) no-repeat
+  background-size: $width $height
+  text-indent: 100%
+  white-space: nowrap
+  overflow: hidden
+
+
+// @mixin fz($size: 14)
+//   font-size: $size + px
+//   font-size: ($size / 10) + rem
+
+@function get_vw($size, $viewport:320)
+  $rate: math.div(100,$viewport)
+  @return $rate * $size * 1vw
+
+//スマホなどレスポンシブの場合のfontsize指定(viewportに合わせてデザイン750pxの時)
+@mixin fontVw($font_size:10, $viewport:750)
+  font-size: $font_size * 1px
+  font-size: get_vw($font_size,$viewport)
+
+@mixin fontsize($size: 24, $base: 16)
+  font-size: $size + px
+  // font-size: ($size / $base) * 1rem
+  font-size: math.div($size, $base) * 1rem
+
+//テキストをシャープに
+@mixin fontSmoothing()
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+
+//デフォルト設定
+@mixin fontSmoothingOff
+  -webkit-font-smoothing: subpixel-antialiased
+  -moz-osx-font-smoothing: auto
+
+@mixin fontFeatureSetting
+  text-rendering: optimizeLegibility
+  font-feature-settings: 'palt' 1
+
+//縦書き
+@mixin textVertical
+  -webkit-writing-mode: vertical-rl
+  -ms-writing-mode: tb-rl
+  writing-mode: vertical-rl
+
+//縦書き解除
+@mixin textVerticalOff
+  -webkit-writing-mode: horizontal-tb
+  -ms-writing-mode: lr-tb
+  writing-mode: horizontal-tb
+
+
+@mixin absTL($top: 0, $left: 0)
+  position: absolute
+  top: $top
+  left: $left
+
+@mixin absTR($top: 0, $right: 0)
+  position: absolute
+  top: $top
+  right: $right
+
+
+@mixin resetPos
+  margin: 0
+  padding: 0
+
+
+//リストの横並び
+@mixin baseliHorizon()
+  display: inline-block
+  *display: inline
+  *zoom: 1
+  margin-right: -5px //ネガティブマージンで調整して隙間を無くす
+  list-style: none
+
+@mixin liHorizon($margin: 0, $wid: 0)
+  +baseliHorizon()
+  @if $wid != 0
+    width: $wid
+
+  margin: 0 $margin
+
+//横幅100%の画像(imgタグ)
+@mixin flexImg
+  max-width: 100%
+  display: block
+  height: auto
+
+//拡大縮小時に綺麗に(ちらつき防止)
+@mixin bfvHidden
+  -webkit-backface-visibility: hidden
+  backface-visibility: hidden
+
+@mixin useGpu
+  -webkit-transform-style: preserve-3d
+  -webkit-transform: translateZ(0)
+  -webkit-perspective: 1000
+  -webkit-backface-visibility: hidden
+
+
+@mixin transparent($color, $alpha)
+  $rgba: rgba($color, $alpha)
+  $ie-hex-str: ie-hex-str($rgba)
+  background-color: transparent
+  background-color: $rgba
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$ie-hex-str},endColorstr=#{$ie-hex-str})
+  zoom: 1
+
+@mixin opacity($opacity)
+  opacity: $opacity
+  $opacityIE: $opacity * 100
+  filter: alpha(opacity=$opacityIE)
+
+@mixin unselectable()
+  -moz-user-select: none
+  -webkit-user-select: none
+  -ms-user-select: none
+  user-select: none
+
+@mixin unselecNodrag()
+  user-select: none
+  -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  -khtml-user-select: none
+  -webkit-user-drag: none
+  -khtml-user-drag: none
+
+@mixin clearfix
+  *zoom: 1
+  &:after
+    content: "."
+    display: block
+    clear: both
+    height: 0
+    visibility: hidden
+
+@mixin absMiddle()
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  margin: auto
+  position: absolute
+
+@mixin absCenter
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translateY(-50%) translateX(-50%)
+  -webkit-transform: translateY(-50%) translateX(-50%)
+@mixin absCenterX
+  position: absolute
+  left: 50%
+  transform: translateX(-50%)
+  -webkit-transform: translateX(-50%)
+@mixin absCenterY
+  position: absolute
+  top: 50%
+  transform: translateY(-50%)
+  -webkit-transform: translateY(-50%)
+
+//※改行
+@mixin breakAsr
+  padding-left: 1em
+  text-indent: -1em
+
+//display flex
+@mixin displayFlex
+  display: -webkit-flex
+  display: flex
+@mixin flexDirection($dir)
+  -webkit-flex-direction: $dir
+  flex-direction: $dir
+@mixin flexWrap($wrap)
+  flex-wrap: $wrap
+  -ms-flex-wrap: $wrap
+  -webkit-flex-wrap: $wrap
+@mixin order($num)
+  -webkit-box-ordinal-group: $num
+  -ms-flex-order: $num
+  -webkit-order: $num
+  order: $num
+
+
+@mixin indent1
+  padding-left: 1em
+  text-indent: -1em
+
+/////////////shape
+//角丸
+@mixin radius($size)
+  +border-radius($size + px)
+
+@mixin arrow($direction: right, $size: 10, $color: #000000)
+  $set: left
+  @if $direction == left
+    $set: right
+  @else if $direction == top
+    $set: bottom
+  @else if $direction == bottom
+    $set: top
+  @else
+    $set: left
+  $size: round($size / 2)
+  width: 0
+  height: 0
+  border: $size + px solid transparent
+  border-#{$set}-color: $color
+
+@mixin arrowlink($top, $size: 10, $color: #000000)
+  position: relative
+  padding-left: 10px
+  &:before
+    display: block
+    content: ""
+    position: absolute
+    top: $top + px
+    left: 1px
+    +arrow(right, $size, $color)

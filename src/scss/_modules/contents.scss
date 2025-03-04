@@ -1,0 +1,8 @@
+@use '../_base/settings' as *;
+@forward './look';
+@forward './line_up';
+@forward './profile';
+
+.contents {
+  margin-top: vw(402);
+}

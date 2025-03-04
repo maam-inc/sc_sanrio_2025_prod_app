@@ -1,0 +1,37 @@
+/*
+
+【三角形を作るmixin】
+
+引数でカラー、縦横比、方向を指定します。
+実際のサイズは別途指定してください。
+
+例: 黒い3:2比率の下向き三角形を作る
+@include triangle(#000,3,2,'bottom');
+
+方向の指定方法は以下。
+top     =>  上向き（初期値）
+right   =>  右向き
+bottom  =>  下向き
+left    =>  左向き
+
+縦横比は 1:1 が初期値です。
+
+*/
+
+@mixin triangle($color,$w:1,$h:1,$direction:'top') {
+  aspect-ratio: #{$w} / #{$h};
+  background-color: $color;
+
+  @if $direction == 'top' {
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  }
+  @else if $direction == 'right' {
+    clip-path: polygon(100% 50%, 0 0, 0 100%);
+  }
+  @else if $direction == 'bottom' {
+    clip-path: polygon(50% 100%, 100% 0, 0 0);
+  }
+  @else if $direction == 'right' {
+    clip-path: polygon(0 50%, 100% 100%, 100% 0);
+  }
+}

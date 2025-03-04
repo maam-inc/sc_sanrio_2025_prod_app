@@ -1,0 +1,20 @@
+include ./svg.pug
+
+mixin share
+  .share
+    .share__title.f-popin-b SHARE
+    ul.share__list
+      li.share__list__item
+        a.anchor.m-share(href="#fb")
+          span.inner
+            img(src=`${IMG_DIR}footer_share-fb.svg`)
+
+      li.share__list__item
+        a.anchor.m-share(href="#tw")
+          span.inner
+            img(src=`${IMG_DIR}footer_share-tw.svg`)
+
+      li.share__list__item.SP
+        a.anchor.m-share(href="#line")
+          span.inner
+            img(src=`${IMG_DIR}footer_share-line.svg`)

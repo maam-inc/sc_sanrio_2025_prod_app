@@ -1,0 +1,72 @@
+@use 'settings' as *;
+
+html{
+  // color: #000;
+  // min-width: 1080px;
+  // font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Helvetica Neue", Arial, Meiryo, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings : "palt";
+  @if variable-exists(fontBaseSize-rem) {
+    @if $fontBaseSize-rem == 'variable' {
+      font-size: vw(10);
+      @include mq(pc) {
+        font-size: fz-lq(10);
+      }
+    } @else if $fontBaseSize-rem == 'fix' {
+      font-size: vw(10);
+      @include mq(pc) {
+        font-size: 10px;
+      }
+    }
+  }
+}
+body{
+  *{
+    box-sizing: border-box;
+  }
+}
+
+a{
+  text-decoration: inherit;
+  color: inherit;
+  display:block;
+  width: 100%;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+img,video{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+
+// responsive
+@include mq(sp) {
+  .pc{
+    display: none!important;
+  }
+}
+@include mq(pc) {
+  .sp{
+    display: none!important;
+  }
+}
+
+// credit
+// テンプレートのclassをそのまま使った場合
+.credit {
+  .credit-comingsoon {
+    display: none;
+  }
+  &.is-disabled {
+    opacity: 0.3;
+    pointer-events: none;
+
+    .credit-buy {
+      display: none;
+    }
+    .credit-comingsoon {
+      display: revert;
+    }
+  }
+}

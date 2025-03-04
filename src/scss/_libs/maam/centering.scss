@@ -1,0 +1,47 @@
+/*
+
+【中央寄せにするmixin】
+
+引数で方向を指定します。
+xy => 上下左右中央寄せ
+x => 左右中央寄せ
+y => 上下中央寄せ
+
+<center-flex>
+flexを使って中の要素を中央寄せにする。
+
+<center-abs>
+absoluteで自身を中央寄せにする。
+親要素にposition:relative;をかけてください。
+
+*/
+
+@use "sass:math";
+
+@mixin center-flex($pos:'xy') {
+  display: flex;
+  flex-direction: column;
+  @if $pos == 'xy' {
+    justify-content: center;
+    align-items: center;
+  } @else if $pos == 'x' {
+    justify-content: center;
+  } @else if $pos == 'y' {
+    align-items: center;
+  }
+}
+
+@mixin center-abs($pos:'xy') {
+  position: absolute;
+  @if $pos == 'xy' {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  } @else if $pos == 'x' {
+    left: 50%;
+    transform: translateX(-50%);
+  } @else if $pos == 'y' {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

@@ -1,0 +1,13 @@
+.main#main
+  .fv#fv
+    .container
+      -for( let i = 0; i < 3; i++ )
+        .img(class=`img${i+1}`)
+          +webPJpg(`${IMG_DIR}main/`,`fv_${i+1}`,`fv_${i+1}_1`,devMode,'fvImg1')
+
+    .collabo_en.absolute: +collabo_en
+    .collabo_jp.absolute: +collabo_jp
+    .clip_logo.absolute: +clip_logo
+  .lead_wrapper
+    .back_to_en.absolute: +back_to_en
+    .lead: img(src=`${IMG_DIR}main/lead.png` loading="lazy")

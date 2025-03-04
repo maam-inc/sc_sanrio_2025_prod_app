@@ -1,0 +1,28 @@
+/*
+
+【ブレイクポイントの記述を簡単にするmixin】
+breakpointの数値は ../../base/_project.scssで定義しています。
+
+例えば
+@include mq(xxs) {　...　}
+と記述すると
+@media screen and (max-width: 374px) {　...　}
+として出力されます。
+
+*/
+
+
+@use '../../_base/_project' as *;
+
+$breakpoints: (
+  'xxs': 'screen and (max-width: 374px)',               //iPhoneSE幅
+  'sp': 'screen and (max-width: #{$BREAKPOINT})',       //SP時
+  'pc': 'screen and (min-width: #{$BREAKPOINT_O})',     //PC時（タブレットもこの幅）
+  'pc-l': 'screen and (min-width: #{$BREAKPOINT_PC})',  //さらに大きいPC
+) !default;
+
+@mixin mq($bp: pc) {
+  @media #{map-get($breakpoints, $bp)} {
+    @content;
+  }
+}

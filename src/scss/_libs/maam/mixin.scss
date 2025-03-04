@@ -1,0 +1,32 @@
+@use 'sass:math';
+@use '../../_base/_project' as *;
+
+
+@function mn($value: 0, $molecule: $w-sp){
+  @return $value * math.div(0.1rem * 320, $molecule)
+};
+
+@function vw($value: 0, $molecule: $w-sp){
+  @return math.div(100vw * $value, $molecule)
+};
+
+@function vh($denominator: 0, $molecule: 0){
+  @return math.div(100vh * $denominator, $molecule);
+};
+
+@function per($denominator: 0, $molecule: $w-sp){
+  @return math.div(100% * $denominator, $molecule);
+};
+
+@function em($denominator: 0, $molecule: 0){
+  @return math.div(1em * $denominator, $molecule);
+};
+
+@function vwPc($denominator: 0, $baseSize: $w-pc, $contentMaxSize: $contW-pc){
+  $per: math.div($contentMaxSize,$baseSize);
+  @if $denominator < 0 {
+    @return max(100vw * $denominator / $baseSize, $per * $denominator * 1px);
+  } @else {
+    @return min(100vw * $denominator / $baseSize, $per * $denominator * 1px);
+  }
+};

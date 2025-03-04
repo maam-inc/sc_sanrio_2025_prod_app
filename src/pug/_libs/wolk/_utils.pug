@@ -1,0 +1,21 @@
+mixin picture(spUrl, pcUrl, alt)
+  picture(
+    class = attributes.className
+  )
+    source(
+      media = '(max-width: 768px)',
+      srcset = spUrl
+      )
+    img(
+      src = pcUrl,
+      alt = alt
+    )
+
+mixin splitStr(str, className)
+  -
+    var strArr = str.split('');
+    var html = '';
+    for (var i = 0; i < strArr.length; i++) {
+      html += `<span class="${className}">${(strArr[i] == ' ') ? '&nbsp' : strArr[i] }</span>`;
+    }
+  |!{html}

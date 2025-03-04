@@ -1,0 +1,130 @@
+@use 'sass:math';
+@use '../_base/settings' as *;
+
+.contents .line_up {
+  color: $main;
+  padding-top: per(114);
+  width: 100%;
+  overflow: clip;
+
+  &-ttl {
+    svg { fill: $main; }
+    .back_to, .sub, .line_up_title {
+      display: block;
+    }
+    .back_to {
+      width: per(761);
+      margin-left: per(-8);
+    }
+    .sub {
+      width: per(409);
+      height: auto;
+      aspect-ratio: 409.3 / 21.5;
+      margin: per(-22) auto 0;
+
+      svg {
+        overflow: visible;
+
+        .cls-1 {
+          fill: $main;
+        }
+      }
+    }
+    .line_up_title {
+      width: vw(196);
+      height: auto;
+      aspect-ratio: 196/42;
+      margin: per(162) auto 0;
+    }
+  }
+
+  &-main {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 750/918;
+    margin-top: vw(62);
+  }
+  &-list {
+    width: vw(678);
+    margin: vw(84) auto 0;
+
+    .item {
+      &:not(:first-child){
+        margin-top: vw(114);
+      }
+      .img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 678/411;
+      }
+      .item_credit_wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        .item_credit {
+          width: vw(320);
+
+          .item-detail, .item-note {
+            margin-inline: auto;
+            letter-spacing: 0.03em;
+            width: per(296,320);
+          }
+          .item-detail {
+            margin-top: vw(32);
+            font-size: vw(24);
+            position: relative;
+            +.item-detail {
+              margin-top: 1.2em;
+            }
+            .name {
+              text-decoration: underline;
+              line-height: math.div(43,24);
+              // span {
+              //   display: inline-block;
+              //   text-decoration: underline;
+              // }
+            }
+            .price {
+              @function pd($size) {
+                @return calc(#{$size}em * (24 / 43));
+              }
+              line-height: 1;
+              padding: pd(0.8) 0 pd(0.2);
+            }
+            .buy {
+              $fz: 18;
+
+              background: $main;
+              font-size: vw($fz);
+              font-weight: 600;
+              color: $wh;
+              line-height: 1;
+              border-radius: 999px;
+              overflow: clip;
+              padding: math.div(1em * 6, $fz) math.div(11em * 1, $fz);
+              position: absolute;
+              bottom: 0;
+              right: math.div(1em * -5, $fz);
+            }
+          }
+          .item-note {
+            margin-top: math.div(1em * 31, 21);
+            font-size: vw(21);
+            line-height: math.div(34,21);
+          }
+        }
+      }
+    }
+  }
+  .online-btn {
+    .btn {
+      color: $wh;
+      background: $main;
+
+      svg {
+        fill: $wh;
+      }
+    }
+  }
+}

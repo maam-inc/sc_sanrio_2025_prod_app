@@ -1,0 +1,73 @@
+@use 'sass:math';
+@use '../_base/settings' as *;
+
+// webfont 日本語
+@mixin notoCjkM {
+  font-family: "noto-sans-cjk-jp", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+.notoCjkM {
+  @include notoCjkM;
+}
+
+// webfont 英語
+@mixin poppinsR {
+  font-family: "poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.poppinsR {
+  @include poppinsR;
+}
+@mixin poppinsM {
+  font-family: "poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+.poppinsM {
+  @include poppinsM;
+}
+@mixin ebGaramondR {
+  font-family: "eb-garamond", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.ebGaramondR {
+  @include ebGaramondR;
+}
+
+// 共通パーツ
+.online-btn {
+  margin-top: per(197);
+  margin-inline: auto;
+  width: per(600);
+
+  .btn {
+    border-radius: 999px;
+    overflow: clip;
+    position: relative;
+
+    padding: vw(46) 0 vw(48);
+
+    svg {
+      fill: $wh;
+    }
+    .online_shop {
+      display: block;
+      width: vw(218);
+      height: auto;
+      aspect-ratio: 222/23;
+      margin: 0 auto;
+    }
+    &-arw {
+      width: vw(24.5);
+      height: auto;
+      aspect-ratio: 24.5/23.4;
+      right: vw(53);
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}

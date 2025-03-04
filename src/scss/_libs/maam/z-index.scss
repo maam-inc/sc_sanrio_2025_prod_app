@@ -1,0 +1,22 @@
+/*
+
+【z-indexのインフレ対策用mixin】
+$zマップは../../base/_project.scssに記述しています。
+_moduleのそれぞれの要素の中で、以下の記述で呼び出してください。
+
+記述例: .header { z-index: z(header); }
+→ 出力: .header { z-index: 10; }
+
+10刻みでで出力されるようになっているので、
+細かい指定をしたい場合は第2引数で1の位を指定できます。
+
+記述例: .header .logo { z-index: z(header,1); }
+→ 出力: .header .logo { z-index: 11; }
+
+*/
+
+@use '../../_base/_project' as *;
+
+@function z($name, $num: 0) {
+  @return map-get($z, $name) * 10 + $num;
+}

@@ -1,0 +1,35 @@
+extends ./_layout/layout
+block head
+  link(href=`/${CSS_DIR}core.css?${now.getTime()}` rel='stylesheet' type='text/css')
+
+  //- .
+  //-   <script>
+  //-     (function(d) {
+  //-       var config = {
+  //-         kitId: 'dwv8lyt',
+  //-         scriptTimeout: 3000,
+  //-         async: true
+  //-       },
+  //-       h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+  //-     })(document);
+  //-   </script>
+
+block content
+  .wrapper#wrapper
+    include ./_modules/main
+    include ./_modules/contents
+    include ./_modules/footer
+
+block script
+  .
+    <script>
+    //- img
+      //- const imgElems = document.images.length;
+      //- console.log(imgElems);
+      //- p
+      //- const pElems = document.getElementsByTagName('p');
+      //- for( let i = 0; i < pElems.length; i++ ) console.log(pElems[i].textContent);
+      //- a
+      //- const aElems = document.getElementsByTagName('a');
+      //- for( let i = 0; i < aElems.length; i++ ) console.log(aElems[i]);
+    </script>

@@ -1,0 +1,14 @@
+footer.footer#footer
+
+  .img_wrapper
+    .img: img(src=`${IMG_DIR}footer/footer.jpg` loading="lazy")
+
+  .absolute.absolute_1
+    .back_to: +back_to
+    .collabo_en: +collabo_en
+  .absolute.absolute_2
+    a.clip_logo: +clip_logo
+    .links
+      -for( let i = 0; i < footer.links.length; i++ )
+        a.link(href=footer.links[i].url target="_blank"): +link(i)
+    p.copyright.poppinsR: +adastria_copy
