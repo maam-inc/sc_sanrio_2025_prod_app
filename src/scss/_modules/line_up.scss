@@ -130,4 +130,46 @@
       }
     }
   }
+  .line_up-bnr {
+    width: vw(676);
+    height: vw(726);
+    margin: vw(126) auto 0;
+    position: relative;
+
+    .btn {
+      position: absolute;
+      bottom: vw(81);
+      left: 50%;
+      transform: translateX(-50%);
+
+      .bnr_button {
+        display: inline-block;
+        width: vw(601);
+        height: vw(107);
+        border: 1px solid #fff;
+        border-radius: vw(107);
+        position: relative;
+
+        font-size: vw(29);
+        font-weight: 600;
+        letter-spacing: .03em;
+        color: #fff;
+        text-align: center;
+        padding-top: vw(32);
+
+        svg {
+          width: vw(24);
+          height: auto;
+          position: absolute;
+          top: 50%;
+          right: vw(53);
+          transform: translateY(-50%);
+
+          .cls-1 {
+            fill: #fff;
+          }
+        }
+      }
+    }
+  }
 }

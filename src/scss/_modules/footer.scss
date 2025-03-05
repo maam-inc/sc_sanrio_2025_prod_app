@@ -63,10 +63,30 @@
       bottom: vw(71);
       left: 0;
 
+      .bnr_wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        .bnr_button {
+          display: inline-block;
+          width: vw(386);
+          height: vw(76);
+          border: 1px solid #fff;
+          border-radius: vw(76);
+
+          font-size: vw(28);
+          font-weight: 600;
+          letter-spacing: .03em;
+          color: #fff;
+          text-align: center;
+          padding-top: vw(18);
+        }
+      }
       .clip_logo {
         width: vw(200);
         height: auto;
-        margin: 0 auto;
+        margin: vw(82) auto 0;
 
         svg {
           .cls-1 {
@@ -76,7 +96,7 @@
       }
       .links {
         width: vw(580);
-        margin: vw(86) auto vw(92);
+        margin: vw(62) auto;
         display: flex;
         flex-wrap: wrap;
 
