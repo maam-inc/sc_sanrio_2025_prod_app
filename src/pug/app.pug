@@ -1,6 +1,6 @@
 extends ./_layout/layout
 block head
-  link(href=`/${CSS_DIR}core.css?${now.getTime()}` rel='stylesheet' type='text/css')
+  link(href=`/${CSS_DIR}app.css?${now.getTime()}` rel='stylesheet' type='text/css')
 
   //- .
   //-   <script>
@@ -19,4 +19,3 @@ block content
     include ./_modules/main
     include ./_modules/contents
     include ./_modules/footer
-
