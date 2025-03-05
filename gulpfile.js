@@ -29,7 +29,7 @@ const BREAKPOINT = 768;
 const PROTOCOL = 'https';
 const SERVER_NAME = 'www.dot-st.com';
 
-const PRJ_NAME = "sc_sanrio_2025"
+const PRJ_NAME = "sanrio_2025_sc"
 // PRJ_NAMEを書き換える
 const DIR = 'studioclip/cp/'+PRJ_NAME;
 const ASSET_DIR = 'static/docs/studioclip/pages/'+PRJ_NAME;
