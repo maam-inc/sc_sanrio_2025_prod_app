@@ -23,5 +23,5 @@
 <meta http-equiv="content-style-type" content="text/css; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>studio CLIP meets HELLO KITTY | and st</title>
+<title>studio CLIP meets HELLO KITTY - サンリオキャラクターズ コラボ | and st</title>
 <style type="text/css"></style> -->
